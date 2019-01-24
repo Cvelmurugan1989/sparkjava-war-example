@@ -18,8 +18,6 @@ node {
        }
 }
    stage("DEploy') {   
-   bat '''cp C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps
-cd D:\\Vel\\apache-tomcat-8.5.37\\bin
-./startup.bat'''
+   bat 'cp C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps'
          }
 }
