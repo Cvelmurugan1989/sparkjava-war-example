@@ -17,7 +17,7 @@ node {
       }
        }
       echo "Starting Deployment"
-      bat 'copy C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps'
+      bat 'copy C:\\Program Files%20(x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps'
 }
    //stage("DEploy') {   
    //bat 'cp C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps'
