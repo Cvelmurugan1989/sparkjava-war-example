@@ -16,10 +16,12 @@ node {
          bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
        }
-      echo "Starting Deployment"
+      }
+   stage("DEploy') {   
+   echo "Starting Deployment"
+      bat 'cd D:\Vel\apache-tomcat-8.5.37\bin'
+      bat 'shutdown.bat'
       bat 'copy "C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war" D:\\Vel\\apache-tomcat-8.5.37\\webapps'
-}
-   //stage("DEploy') {   
-   //bat 'cp C:\\Program Files (x86)\\Jenkins\\workspace\\SparkJava_Pipeline\\target\\sparkjava-hello-world-1.0.war D:\\Vel\\apache-tomcat-8.5.37\\webapps'
-     //    }
+      bat 'startup.bat'
+    }
 }
