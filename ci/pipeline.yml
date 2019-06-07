@@ -1,0 +1,52 @@
+---
+resource_types:
+- name: git-branch-heads
+  type: docker-image
+  source: {repository: orangecloudfoundry/git-branch-heads-resource}
+
+resources:
+#- name: source-code-resource
+#  type: git
+#  source:
+#    uri: https://github.com/Cvelmurugan1989/sparkjava-war-example
+#    branch: {{source-code-resource-branch}}
+
+- name: source-code-resource
+  type: git-branch-heads
+  source:
+    uri: https://github.com/Cvelmurugan1989/sparkjava-war-example
+    branches: [test*]
+
+jobs: 
+- name: job-display-branch-name
+  plan:
+  - get: source-code-resource
+  - task: display-branch-name
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: busybox}
+      inputs:
+        - source-code-resource
+      run:
+        path: sh
+        args:
+          - source-code-resource/ci/tasks/branch_name.sh
+- name: job-build-and-verify
+  plan:
+  - get: source-code-resource
+    trigger: true
+  - task: build-and-verify
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: {repository: maven, tag: 3.3.9-jdk-8}
+      inputs:
+        - source-code-resource
+      run:
+        path: sh
+        args:
+          - source-code-resource/ci/tasks/build.sh
+
